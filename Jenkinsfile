@@ -14,7 +14,12 @@ pipeline {
   }
 
 
+  stage('terraform init') {
+      steps {
+        sh  'terraform init -plugin-dir=/opt/terraform/plugins'
 
+        }
+ }  
       
   stage('terraform plan&apply') {
       steps {
