@@ -1,6 +1,6 @@
 pipeline {
-  agent {
-    dockerfile true
+    agent {
+        docker { image 'test:latest' }
     }
 
   stages {
