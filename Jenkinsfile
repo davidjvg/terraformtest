@@ -5,16 +5,24 @@ pipeline {
 
   stages {
 
+
+    stage('test') {
+        steps {
+          sh  'ping www.google.es'
+
+          }
+  }
+
     stage('sudo terraform init') {
         steps {
-          sh  'sudo terraform init'
+          sh  'terraform init'
 
           }
   }
 
   stage('sudo terraform apply') {
       steps {
-        sh  'sudo terraform apply -no-color -auto-approve'
+        sh  'terraform apply -no-color -auto-approve'
 
         }
  }
