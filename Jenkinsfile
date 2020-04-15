@@ -14,14 +14,9 @@ pipeline {
   }
 
 
-  stage('terraform init') {
-      steps {
-        sh  'terraform init'
 
-        }
- }      
       
-  stage('terraform apply') {
+  stage('terraform plan&apply') {
       steps {
         sh 'terraform plan -out=tfplan -input=false'
 
