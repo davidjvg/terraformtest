@@ -7,14 +7,14 @@ pipeline {
 
     stage('sudo terraform init') {
         steps {
-          sh  'terraform init'
+          sh  'sudo terraform init'
 
           }
   }
 
   stage('sudo terraform apply') {
       steps {
-        sh  'terraform apply -no-color -auto-approve'
+        sh  'sudo terraform apply -no-color -auto-approve'
 
         }
  }
