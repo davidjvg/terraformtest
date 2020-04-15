@@ -8,19 +8,19 @@ pipeline {
 
     stage('test') {
         steps {
-          sh  'ping www.google.es'
+          sh  'hostname'
 
           }
   }
 
-    stage('sudo terraform init') {
+    stage('terraform init') {
         steps {
           sh  'terraform init'
 
           }
   }
 
-  stage('sudo terraform apply') {
+  stage('terraform apply') {
       steps {
         sh  'terraform apply -no-color -auto-approve'
 
