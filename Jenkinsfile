@@ -5,14 +5,14 @@ pipeline {
 
   stages {
 
-    stage('terraform init') {
+    stage('sudo terraform init') {
         steps {
           sh  'terraform init'
 
           }
   }
 
-  stage('terraform apply') {
+  stage('sudo terraform apply') {
       steps {
         sh  'terraform apply -no-color -auto-approve'
 
