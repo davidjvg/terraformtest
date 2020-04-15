@@ -23,7 +23,7 @@ pipeline {
       
   stage('terraform apply') {
       steps {
-        sh  'terraform apply -no-color -auto-approve'
+        sh 'terraform plan -out=tfplan -input=false'
 
         }
  }
