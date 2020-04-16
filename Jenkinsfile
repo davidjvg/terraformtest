@@ -6,21 +6,6 @@ pipeline {
   stages {
 
 
-    stage('test') {
-        steps {
-          sh  'hostname'
-
-          }
-  }
-
-      
-   stage('test2') {
-      steps {
-        sh  'ls -la /opt/terraform/plugins/'
-
-        }
- }  
-
   stage('terraform init') {
       steps {
         sh  'terraform init -plugin-dir=/opt/terraform/plugins/.terraform/plugins/linux_amd64/'
