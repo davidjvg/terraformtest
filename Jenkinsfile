@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'terraform:latest' }
+        docker { image 'hashicorp/terraform:0.12' }
     }
 
   stages {
@@ -8,7 +8,7 @@ pipeline {
 
   stage('terraform init') {
       steps {
-        sh  'terraform init -plugin-dir=/opt/terraform/plugins/.terraform/plugins/linux_amd64/'
+        sh  'terraform init'
 
         }
  }  
