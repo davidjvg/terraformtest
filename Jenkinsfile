@@ -23,7 +23,7 @@ pipeline {
 
   stage('terraform init') {
       steps {
-        sh  'sudo terraform init -plugin-dir=/opt/terraform/plugins/.terraform/plugins/linux_amd64/'
+        sh  'terraform init -plugin-dir=/opt/terraform/plugins/.terraform/plugins/linux_amd64/'
 
         }
  }  
