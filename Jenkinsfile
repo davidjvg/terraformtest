@@ -13,12 +13,6 @@ pipeline {
         }
  }  
       
-  stage('terraform plan&apply') {
-      steps {
-        sh 'terraform plan -out=tfplan -input=false'
-
-        }
- }
   }
 
 }
