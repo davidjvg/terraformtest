@@ -23,7 +23,7 @@ pipeline {
 
   stage('terraform init') {
       steps {
-        sh  'terraform init -plugin-dir=/opt/terraform/plugins/'
+        sh  'terraform init -plugin-dir=/opt/terraform/plugins/.terraform/plugins'
 
         }
  }  
