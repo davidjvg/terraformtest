@@ -13,10 +13,17 @@ pipeline {
           }
   }
 
+      
+   stage('test2') {
+      steps {
+        sh  'ls -l /opt/terraform/plugins/'
+
+        }
+ }  
 
   stage('terraform init') {
       steps {
-        sh  'terraform init -plugin-dir=/opt/terraform/plugins'
+        sh  'terraform init -plugin-dir=/opt/terraform/plugins/'
 
         }
  }  
