@@ -8,7 +8,7 @@ pipeline {
 
   stage('/usr/bin/terraform init') {
       steps {
-        sh  'terraform init'
+        sh  'hostname'
 
         }
  }  
