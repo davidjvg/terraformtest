@@ -16,7 +16,7 @@ pipeline {
       
    stage('test2') {
       steps {
-        sh  'ls -l /opt/terraform/plugins/'
+        sh  'ls -la /opt/terraform/plugins/'
 
         }
  }  
