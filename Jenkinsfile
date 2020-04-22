@@ -8,10 +8,10 @@ pipeline {
 
     environment {
         
-        TENANT_ID    = credentials('tenantid')
-        CLIENT_ID     = credentials('clientid')
-        SUBSCRIPTION_ID = credentials('subscriptionid')
-        CLIENT_SECRET   = credentials('clientsecret')
+        tenant_id    = credentials('tenantid')
+        client_id     = credentials('clientid')
+        subscription_id = credentials('subscriptionid')
+        client_secret  = credentials('clientsecret')
     }
                 
     
