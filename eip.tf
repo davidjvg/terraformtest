@@ -1,73 +1,68 @@
-resource "azurerm_virtual_machine" "vm" {
-    name                  =   var.env_name
-    location              =   var.location
-    resource_group_name   =   azurerm_resource_group.vm_resource_group.name
-    network_interface_ids = [  azurerm_network_interface.nic.id ]
-    vm_size               =   var.vm_size
+ 
+# creacion del grupo de recursos
 
-    storage_os_disk {
-        name              =   var.storage_os_disk_name
-        caching           =   var.storage_os_disk_caching
-        create_option     =   var.storage_os_disk_create_option
-        managed_disk_type =   var.storage_os_disk_managed_disk_type
-    }
-
-    storage_image_reference {
-        publisher =   var.storage_image_reference_publisher
-        offer     =   var.storage_image_reference_offer
-        sku       =   var.storage_image_reference_sku
-        version   =   var.storage_image_reference_version
-    }
-
-
-# No aditional disks for Sonar Server
-
-  #  storage_data_disk {
-  #  name              =   var.storage_data_disk_name
-  #  managed_disk_type =   var.storage_data_disk_managed_disk_type
-  #  create_option     =   var.storage_data_disk_create_option
-  #  lun               =   var.storage_data_disk_lun
-  #  disk_size_gb      =   var.storage_data_disk_disk_size_gb
-#}
-
-    os_profile {
-        computer_name  =   var.env_name
-        admin_username =   var.admin_username
-    }
-
-    os_profile_linux_config {
-        disable_password_authentication =   var.os_profile_linux_config_disable_password_authentication
-        ssh_keys {
-            path      = "/home/${var.admin_username}/.ssh/authorized_keys"
-            key_data  = file("ubuntu.pub")
-        }
-    }
-
-#    boot_diagnostics {
-#        enabled      = true"
-#        storage_uri =   azurerm_storage_account.mystorageaccount.primary_blob_endpoint
-#    }
+resource "azurerm_resource_group" "vm_resource_group" {
+    name     =   var.vm_resource_group_name
+    location =   var.location
 
     tags = {
-        environment =   var.tags_environment_instance
-        component =     var.tags_component_instance
+        environment =   var.tags_environment_resource_group
     }
 }
 
-resource "azurerm_virtual_machine_extension" "vmext" {
-    resource_group_name     = azurerm_resource_group.vm_resource_group.name
-    location                = var.location
-    name                    = azurerm_virtual_machine.vm.name
+ # red virtual
+resource "azurerm_virtual_network" "network" {
+    name                =   var.network_name
+    address_space       =   var.network_address_space 
+    location            =   var.location
+    resource_group_name =   azurerm_resource_group.vm_resource_group.name
 
-    virtual_machine_name = azurerm_virtual_machine.vm.name
-    publisher            = "Microsoft.Azure.Extensions"
-    type                 = "CustomScript"
-    type_handler_version = "2.0"
-
-    protected_settings = <<PROT
-    {
-        "script": "${base64encode(file(var.scfile))}"
+    tags = {
+        environment =   var.tags_environment_network
     }
-    PROT
 }
-© 2020 GitHub, Inc.
+
+    # subnet dentro de la red virtual
+
+resource "azurerm_subnet" "subnet" {
+    name                 =   var.subnet_name
+    resource_group_name  =   azurerm_resource_group.vm_resource_group.name
+    virtual_network_name =   azurerm_virtual_network.network.name
+    address_prefix       =   var.subnet_address_prefix
+}
+
+
+ # Creacion de ip publica
+
+resource "azurerm_public_ip" "publicip" {
+    name                         =   var.publicip_name
+    location                     =   var.location
+    resource_group_name          =   azurerm_resource_group.vm_resource_group.name
+    allocation_method            =   var.publicip_allocation_method
+
+    tags = {
+        environment =   var.tags_environment_publicip
+    }
+}
+
+
+
+# Creación de una tarjeta de interfaz de red virtual
+
+resource "azurerm_network_interface" "nic" {
+    name                =   var.nic_name
+    location            =   var.location
+    resource_group_name =   azurerm_resource_group.vm_resource_group.name
+    network_security_group_id =   azurerm_network_security_group.vm_sg.id
+
+    ip_configuration {
+        name                          =   var.nic_ip_configuration_name
+        subnet_id                     =   azurerm_subnet.subnet.id
+        private_ip_address_allocation =   var.nic_ip_configuration_private_ip_address_allocation
+        public_ip_address_id          =   azurerm_public_ip.publicip.id
+    }
+
+    tags = {
+        environment =   var.tags_environment_nic
+    }
+}
