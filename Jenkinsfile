@@ -33,7 +33,7 @@ pipeline {
           stage('plan') {
             
             steps {
-                sh 'terraform plan -out=tfplan -input=false -var 'client_id=$TENANT_ID'
+                sh 'terraform plan -out=tfplan -input=false -var 'tenant_id=$TENANT_ID' '
             }
             
         }
