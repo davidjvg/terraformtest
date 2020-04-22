@@ -214,7 +214,7 @@ variable "nic_ip_configuration_name" {
 variable "nic_ip_configuration_private_ip_address_allocation" {
   type = string
   description  = " ---- "
-  default = "Static"
+  default = "Dynamic"
 }
 
 # TAGS
