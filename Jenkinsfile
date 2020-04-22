@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        TENANT_ID     = credentials('tenantid')
+        tenant_id     = credentials('tenantid')
     }
                 
     
