@@ -8,6 +8,7 @@ pipeline {
 
     environment {
         
+        tenant_id = credentials('tenantid')
         ARM_TENANT_ID    = credentials('tenantid')
         ARM_CLIENT_ID     = credentials('clientid')
         ARM_SUBSCRIPTION_ID = credentials('subscriptionid')
@@ -32,7 +33,7 @@ pipeline {
           stage('plan') {
             
             steps {
-                sh 'terraform plan -out=tfplan -input=false'
+                sh 'terraform plan -out=tfplan -input=false -var '
             }
             
         }
