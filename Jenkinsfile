@@ -1,18 +1,36 @@
 pipeline {
-    agent {
-        docker { image 'terraform:latest' }
+    agent { docker { 
+        image 'hashicorp/terraform' 
+        args '--entrypoint='
+        
+    } 
+    
     }
+    
+    stages {
 
-  stages {
-
-
-  stage('/usr/bin/terraform init') {
-      steps {
-        sh  'hostname'
-
-        }
- }  
+        stage('execute plan') {
+          
+            steps {
+                sh 'printenv'
+                sh 'git clone https://github.com/davidjvg/maquinatest.git' 
+                sh'cd maquinatest/ && terraform init'
+                sh 'cd maquinatest/ && terraform plan -out=tfplan -input=false'
+                sh 'cd maquinatest/ && terraform apply -input=false tfplan'
+            }
+          
+        } 
       
-  }
 
+        
+          stage('test') {
+            
+            steps {
+                sh 'hostname' 
+            }
+            
+        }
+
+        
+    }
 }
