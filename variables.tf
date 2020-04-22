@@ -1,3 +1,11 @@
+# CREDENTIALS
+variable "client_id" {}
+
+variable "client_secret" {}
+
+variable "tenant_id" {}
+
+variable "subscription_id" {}
 
 
 # NAME OF INSTANCE
@@ -5,7 +13,7 @@
 variable env_name {
   type = string
   description  = "---"
-  default  = "TeamPass"
+  default  = "maquinatest"
 }
 
 #LOCATION OF INSTANCE
@@ -30,7 +38,7 @@ variable "admin_username" {
 variable "vm_resource_group_name" {
   type = string
   description  = "---- "
-  default  = "TeamPass_Resource_Group"
+  default  = "Test_Resource_Group"
 }
 
 
@@ -39,7 +47,7 @@ variable "vm_resource_group_name" {
 variable "vm_sg_name" {
   type = string
   description  = "---- "
-  default  = "TeamPassSG"
+  default  = "TestSG"
 }
 
 # REQUIREMENTS OF VM
@@ -60,7 +68,7 @@ default  = "20"
 variable "storage_os_disk_name" {
   type = string
   description  = "---- "
-  default  = "TeamPassOS_disk"
+  default  = "TestOS_disk"
 }
 
 variable "storage_os_disk_caching" {
@@ -152,7 +160,7 @@ variable "os_profile_linux_config_disable_password_authentication" {
 variable "network_name" {
   type = string
   description  = "az-CI"
-  default  = "az_CI_TeamPass"
+  default  = "az_CI_Test"
 }
 
 
@@ -166,20 +174,20 @@ variable "network_address_space" {
 variable "publicip_name" {
   type = string
   description  = " ---- "
-  default  = "PublicIpTeamPass"
+  default  = "PublicIpTest"
 }
 
 variable "publicip_allocation_method" {
   type = string
   description  = " ---- "
-  default  = "Static"
+  default  = "Dynamic"
 }
 
 
 variable "subnet_name" {
   type = string
   description  = "subnet1"
-  default = "subnet1_TeamPass"
+  default = "subnet1_Test"
 }
 
 
@@ -193,14 +201,14 @@ variable "subnet_address_prefix" {
 variable "nic_name" {
   type = string
   description  = " ---- "
-  default = "nic_TeamPass"
+  default = "nic_Test"
 }
 
 
 variable "nic_ip_configuration_name" {
   type = string
   description  = " ---- "
-  default = "nic_ip_TeamPass"
+  default = "nic_ip_Test"
 }
 
 variable "nic_ip_configuration_private_ip_address_allocation" {
@@ -214,13 +222,13 @@ variable "nic_ip_configuration_private_ip_address_allocation" {
 variable "tag_client" {
   type = string
   description  = "babel-internal"
-  default  = "babel-internal"
+  default  = "babel-internal-test"
 }
 
 variable "tag_project" {
   type = string
   description  = "ci-il25"
-  default  = "CI-il25"
+  default  = "CI-il25-test"
 }
 
 variable "tag_clientApp" {
@@ -242,25 +250,25 @@ variable scfile{
 variable "tags_environment_instance" {
   type = string
   description  = "----"
-  default  = "dev"
+  default  = "dev-test"
 }
 
 variable "tags_component_instance" {
   type = string
   description  = "----"
-  default  = "TeamPass"
+  default  = "Test"
 }
 
 variable "tags_environment_resource_group" {
   type = string
   description  = " ---- "
-  default  = "TeamPass_Resource_Group"
+  default  = "Test"
 }
 
 variable "tags_environment_network" {
   type = string
   description  = " ---- "
-  default  = "CI-network"
+  default  = "CI-network-test"
 }
 
 variable "tags_environment_publicip" {
