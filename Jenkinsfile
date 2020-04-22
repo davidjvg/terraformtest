@@ -7,10 +7,11 @@ pipeline {
     }
 
     environment {
-        tenant_id     = credentials('tenantid')
-        client_id     = credentials('clientid')
-        subscription_id = credentials('subscriptionid')
-        client_secret   = credentials('clientsecret')
+        
+        TF_TENANT_ID    = credentials('tenantid')
+        TF_CLIENT_ID     = credentials('clientid')
+        TF_SUBSCRIPTION_ID = credentials('subscriptionid')
+        TF_CLIENT_SECRET   = credentials('clientsecret')
     }
                 
     
