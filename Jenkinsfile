@@ -25,7 +25,6 @@ pipeline {
                 sh 'git clone https://github.com/davidjvg/terraformtest.git' 
                 sh'cd terraformtest/ && terraform init'
                 sh 'cd terraformtest/ && terraform plan -out=tfplan -input=false'
-                sh 'cd terraformtest/ && terraform apply -input=false tfplan'
             }
           
         } 
