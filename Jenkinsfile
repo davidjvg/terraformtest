@@ -18,22 +18,21 @@ pipeline {
     
     stages {
 
-        stage('execute plan') {
+        stage('init') {
           
             steps {
                 sh 'printenv'
                 sh 'terraform init'
-                sh 'terraform plan -out=tfplan -input=false'
             }
           
         } 
       
 
         
-          stage('test') {
+          stage('plan') {
             
             steps {
-                sh 'hostname' 
+                sh 'terraform plan -out=tfplan -input=false'
             }
             
         }
