@@ -1,8 +1,7 @@
 pipeline {
     agent { docker { 
         image 'hashicorp/terraform' 
-        args '--entrypoint='
-        
+        args '--entrypoint='  
     } 
     
     }
@@ -12,7 +11,7 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
     }
                 
-    }
+    
     
     stages {
 
