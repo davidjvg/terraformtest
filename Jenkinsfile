@@ -22,8 +22,8 @@ pipeline {
           
             steps {
                 sh 'printenv'
-                sh 'cd terraformtest/ && terraform init'
-                sh 'cd terraformtest/ && terraform plan -out=tfplan -input=false'
+                sh 'terraform init'
+                sh 'terraform plan -out=tfplan -input=false'
             }
           
         } 
