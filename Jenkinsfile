@@ -7,6 +7,12 @@ pipeline {
     
     }
 
+    environment {
+        TENANT_ID     = credentials('tenantid')
+        AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+    }
+                
+    }
     
     stages {
 
@@ -17,7 +23,6 @@ pipeline {
                 sh 'git clone https://github.com/davidjvg/terraformtest.git' 
                 sh'cd terraformtest/ && terraform init'
                 sh 'cd terraformtest/ && terraform plan -out=tfplan -input=false'
-                withCredentials([string(credentialsId: 'tenantid')])
                 sh 'cd terraformtest/ && terraform apply -input=false tfplan'
             }
           
