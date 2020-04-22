@@ -9,10 +9,9 @@ pipeline {
     environment {
         
         TENANT_ID = credentials('tenantid')
-        ARM_TENANT_ID    = credentials('tenantid')
-        ARM_CLIENT_ID     = credentials('clientid')
-        ARM_SUBSCRIPTION_ID = credentials('subscriptionid')
-        ARM_CLIENT_SECRET   = credentials('clientsecret')
+        CLIENT_ID     = credentials('clientid')
+        SUBSCRIPTION_ID = credentials('subscriptionid')
+        CLIENT_SECRET   = credentials('clientsecret')
     }
                 
     
@@ -33,7 +32,7 @@ pipeline {
           stage('plan') {
             
             steps {
-                sh 'terraform plan -var tenant_id=$client_id '
+                sh 'terraform plan -var tenant_id=$TENANT_ID client_secret=$CLIENT_SECRET client_id=$CLIENT_ID subscription_id=$SUBSCRIPTION_ID  '
             }
             
         }
