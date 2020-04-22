@@ -14,9 +14,9 @@ pipeline {
             steps {
                 sh 'printenv'
                 sh 'git clone https://github.com/davidjvg/terraformtest.git' 
-                sh'cd maquinatest/ && terraform init'
-                sh 'cd maquinatest/ && terraform plan -out=tfplan -input=false'
-                sh 'cd maquinatest/ && terraform apply -input=false tfplan'
+                sh'cd terraformtest/ && terraform init'
+                sh 'cd terraformtest/ && terraform plan -out=tfplan -input=false'
+                sh 'cd terraformtest/ && terraform apply -input=false tfplan'
             }
           
         } 
