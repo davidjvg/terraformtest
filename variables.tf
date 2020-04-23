@@ -13,7 +13,7 @@ variable "subscription_id" {}
 variable env_name {
   type = string
   description  = "---"
-  default  = {}
+  default  = "maquinatest"
 }
 
 #LOCATION OF INSTANCE
