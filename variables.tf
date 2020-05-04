@@ -10,7 +10,7 @@ variable "subscription_id" {}
 
 # NAME OF INSTANCE
 
-variable env_name {}
+variable "env_name" {}
 
 #LOCATION OF INSTANCE
 
