@@ -10,11 +10,7 @@ variable "subscription_id" {}
 
 # NAME OF INSTANCE
 
-variable env_name {
-  type = string
-  description  = "---"
-  default  = "maquinatest"
-}
+variable env_name {}
 
 #LOCATION OF INSTANCE
 
