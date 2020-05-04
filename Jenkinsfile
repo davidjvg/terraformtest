@@ -14,8 +14,10 @@ pipeline {
         CLIENT_SECRET   = credentials('clientsecret')
     }
                 
-    
-    
+   parameters {
+        string(name: 'nombrevm', defaultValue: 'default')
+       
+    } 
     stages {
 
         stage('init') {
